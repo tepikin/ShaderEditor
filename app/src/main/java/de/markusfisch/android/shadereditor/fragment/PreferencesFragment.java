@@ -218,7 +218,7 @@ public class PreferencesFragment
 	private void wireImportExport() {
 		Preference importFromDirectory = findPreference(Preferences.IMPORT_FROM_DIRECTORY);
 		Preference exportToDirectory = findPreference(Preferences.EXPORT_TO_DIRECTORY);
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || true) {
 			importFromDirectory.setOnPreferenceClickListener(preference -> {
 				if (checkExternalStoragePermission(
 						READ_EXTERNAL_STORAGE_REQUEST,

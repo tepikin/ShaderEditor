@@ -181,6 +181,10 @@ public class PresetUniformAdapter extends BaseAdapter {
 						ShaderRenderer.UNIFORM_TIME,
 						context.getString(R.string.time_in_seconds_since_load)),
 				new Uniform(
+						"float",
+						ShaderRenderer.UNIFORM_S_TIME,
+						context.getString(R.string.time_in_seconds_since_load)),
+				new Uniform(
 						"vec2",
 						ShaderRenderer.UNIFORM_TOUCH,
 						context.getString(R.string.touch_position_in_pixels)),

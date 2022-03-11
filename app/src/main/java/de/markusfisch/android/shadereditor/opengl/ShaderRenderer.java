@@ -80,12 +80,14 @@ public class ShaderRenderer implements GLSurfaceView.Renderer {
 	public static final String UNIFORM_PRESSURE = "pressure";
 	public static final String UNIFORM_PROXIMITY = "proximity";
 	public static final String UNIFORM_RESOLUTION = "resolution";
+	public static final String UNIFORM_S_RESOLUTION = "sResolution";
 	public static final String UNIFORM_ROTATION_MATRIX = "rotationMatrix";
 	public static final String UNIFORM_ROTATION_VECTOR = "rotationVector";
 	public static final String UNIFORM_SECOND = "second";
 	public static final String UNIFORM_START_RANDOM = "startRandom";
 	public static final String UNIFORM_SUB_SECOND = "subsecond";
 	public static final String UNIFORM_TIME = "time";
+	public static final String UNIFORM_S_TIME = "sTime";
 	public static final String UNIFORM_TOUCH = "touch";
 
 	private static final int[] TEXTURE_UNITS = {
@@ -235,11 +237,13 @@ public class ShaderRenderer implements GLSurfaceView.Renderer {
 	private int program = 0;
 	private int positionLoc;
 	private int timeLoc;
+	private int sTimeLoc;
 	private int secondLoc;
 	private int subSecondLoc;
 	private int frameNumLoc;
 	private int fTimeLoc;
 	private int resolutionLoc;
+	private int sResolutionLoc;
 	private int touchLoc;
 	private int mouseLoc;
 	private int pointerCountLoc;
@@ -406,6 +410,9 @@ public class ShaderRenderer implements GLSurfaceView.Renderer {
 		if (timeLoc > -1) {
 			GLES20.glUniform1f(timeLoc, delta);
 		}
+		if (sTimeLoc > -1) {
+			GLES20.glUniform1f(sTimeLoc, delta);
+		}
 		if (secondLoc > -1) {
 			GLES20.glUniform1i(secondLoc, (int) delta);
 		}
@@ -421,6 +428,9 @@ public class ShaderRenderer implements GLSurfaceView.Renderer {
 		}
 		if (resolutionLoc > -1) {
 			GLES20.glUniform2fv(resolutionLoc, 1, resolution, 0);
+		}
+		if (sResolutionLoc > -1) {
+			GLES20.glUniform2fv(sResolutionLoc, 1, resolution, 0);
 		}
 		if (touchLoc > -1) {
 			GLES20.glUniform2fv(touchLoc, 1, touch, 0);
@@ -718,6 +728,8 @@ public class ShaderRenderer implements GLSurfaceView.Renderer {
 				program, UNIFORM_POSITION);
 		timeLoc = GLES20.glGetUniformLocation(
 				program, UNIFORM_TIME);
+		sTimeLoc = GLES20.glGetUniformLocation(
+				program, UNIFORM_S_TIME);
 		secondLoc = GLES20.glGetUniformLocation(
 				program, UNIFORM_SECOND);
 		subSecondLoc = GLES20.glGetUniformLocation(
@@ -728,6 +740,8 @@ public class ShaderRenderer implements GLSurfaceView.Renderer {
 				program, UNIFORM_FTIME);
 		resolutionLoc = GLES20.glGetUniformLocation(
 				program, UNIFORM_RESOLUTION);
+		sResolutionLoc = GLES20.glGetUniformLocation(
+				program, UNIFORM_S_RESOLUTION);
 		touchLoc = GLES20.glGetUniformLocation(
 				program, UNIFORM_TOUCH);
 		mouseLoc = GLES20.glGetUniformLocation(

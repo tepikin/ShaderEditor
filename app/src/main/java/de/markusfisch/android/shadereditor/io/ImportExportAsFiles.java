@@ -4,7 +4,12 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -104,8 +109,13 @@ public class ImportExportAsFiles {
 					successCount++;
 				} catch (IOException e) {
 					failCount++;
-
-					Toast.makeText(context, "exportDirectory="+exportDirectory+"  \nshaderName="+shaderName+"  \nerror="+Log.getStackTraceString(e), Toast.LENGTH_SHORT).show();
+					final  String shaderNameFinal  = shaderName;
+					new Handler(Looper.getMainLooper()).post(new Runnable() {
+						@Override
+						public void run() {
+        					Toast.makeText(context, "exportDirectory="+exportDirectory+"  \nshaderName="+shaderNameFinal+"  \nerror="+Log.getStackTraceString(e), Toast.LENGTH_LONG).show();
+						}
+					});
 				}
 			} while (shadersCursor.moveToNext());
 			shadersCursor.close();
@@ -152,6 +162,7 @@ public class ImportExportAsFiles {
 				os.close();
 			}
 		}
+		throw new IOException("test");
 	}
 
 	private static File getImportExportDirectory(

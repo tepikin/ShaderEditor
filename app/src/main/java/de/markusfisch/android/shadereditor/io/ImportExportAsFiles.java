@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.UnknownHostException;
 import java.util.Locale;
 
 import de.markusfisch.android.shadereditor.R;
@@ -100,6 +104,8 @@ public class ImportExportAsFiles {
 					successCount++;
 				} catch (IOException e) {
 					failCount++;
+
+					Toast.makeText(context, "exportDirectory="+exportDirectory+"  \nshaderName="+shaderName+"  \nerror="+Log.getStackTraceString(e), Toast.LENGTH_SHORT).show();
 				}
 			} while (shadersCursor.moveToNext());
 			shadersCursor.close();

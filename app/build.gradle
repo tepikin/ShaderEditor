@@ -7,7 +7,7 @@ android {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
 
-		versionCode 64
+		versionCode 65
 		versionName '2.23.3'
 	}
 

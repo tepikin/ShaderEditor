@@ -27,6 +27,7 @@
 		</intent>
 	</queries>
 	<application
+		android:requestLegacyExternalStorage="true"
 		tools:ignore="UnusedAttribute"
 		android:name=".app.ShaderEditorApp"
 		android:allowBackup="true"

@@ -162,7 +162,7 @@ public class ImportExportAsFiles {
 				os.close();
 			}
 		}
-		throw new IOException("test");
+		//throw new IOException("test");
 	}
 
 	private static File getImportExportDirectory(
